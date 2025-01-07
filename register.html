@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Cargo - Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fruit Cargo Registration</h1>
+    </header>
+    <main>
+        <img src="https://eos.com/wp-content/uploads/2024/05/banana-growing-plantation.png.webp" alt="Fruit Cargo Logo" class="main-image">
+
+        <form action="submit_registration.html" method="POST" enctype="multipart/form-data">
+            <!-- Basic Information -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required><br>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" required><br>
+
+            <label for="address">Farm Address:</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your farm address"></textarea><br>
+
+            <!-- Banana Details -->
+            <label for="quality">Banana Quality:</label>
+            <input type="radio" id="gradeA" name="quality" value="Grade A"> Grade A
+            <input type="radio" id="gradeB" name="quality" value="Grade B"> Grade B<br>
+
+            <label for="quantity">Banana Quantity:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Enter quantity in kg" required><br>
+
+            <label for="cost">Cost:</label>
+            <input type="number" id="cost" name="cost" placeholder="Enter cost per kg" required><br>
+
+            <!-- Transport Details -->
+            <label for="destination">Destination:</label>
+            <select id="destination" name="destination">
+                <option value="City A">Madurai</option>
+                <option value="City B">Coimbatore</option>
+                <option value="City C">Chennai</option>
+            </select><br>
+
+            <label for="transporter">Transporter Name:</label>
+            <input type="text" id="transporter" name="transporter" placeholder="Enter transporter name"><br>
+
+            <label for="carID">Transporter Car ID:</label>
+            <input type="text" id="carID" name="carID" placeholder="Enter car ID"><br>
+
+            <label for="final_person">Final Destination Person Name:</label>
+            <input type="text" id="final_person" name="final_person" placeholder="Enter recipient's name"><br>
+
+            <label for="details">Other Relevant Details:</label>
+            <textarea id="details" name="details" rows="3" placeholder="Enter other details"></textarea><br>
+
+            <!-- File Upload -->
+            <label for="file">Upload Relevant File:</label>
+            <input type="file" id="file" name="file"><br>
+
+            <!-- Checkboxes -->
+            <label>Services Required:</label>
+            <input type="checkbox" name="service" value="Refrigeration"> Refrigeration
+            <input type="checkbox" name="service" value="Insurance"> Insurance
+            <input type="checkbox" name="service" value="Packing"> Packing<br>
+
+            <!-- Submit and Reset -->
+            <button type="submit">Register</button>
+            <button type="reset">Reset</button>
+        </form>
+
+        <section>
+            <h2>Already Booked</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Destination</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>1234567890</td>
+                        <td>City A</td>
+                        <td>500kg</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>9876543210</td>
+                        <td>City B</td>
+                        <td>300kg</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
+
