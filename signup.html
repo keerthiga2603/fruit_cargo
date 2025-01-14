@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Cargo - Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5e86761;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .header-buttons {
+            display: flex;
+        }
+
+        .header-buttons button {
+            background-color: #f4f4f4;
+            color: #4CAF50;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .signup-form {
+            width: 1000px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-form h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 1%;
+        }
+
+        button[type="reset"] {
+            background-color: #f44336;
+        }
+
+        .terms {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .image-upload-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+            <h1>Fruit Cargo Signup</h1>
+        </div>
+        
+    </header>
+
+    <form class="signup-form" action="dashboard.html" method="POST" enctype="multipart/form-data">
+        <h2>Create an Account</h2>
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="file-upload">Upload Your Photo:</label>
+        <input type="file" id="file-upload" name="file-upload" accept="image/*" required>
+
+        <div class="image-upload-container">
+            <img id="image-preview" class="image-preview" src="#" alt="Image Preview" style="display:none;">
+        </div>
+
+        <label for="role">Select Your Role:</label>
+        <select id="role" name="role" required>
+            <option value="customer" selected>Customer</option>
+            <option value="farmer">Farmer</option>
+            <option value="transport">Transport Agency</option>
+            <option value="vendor">Fruit Vendor</option>
+        </select>
+
+        <div>
+            <label for="terms">
+                <input type="checkbox" id="terms" name="terms" required> I agree to the 
+                <a href="#" target="_blank">Terms and Conditions</a> and 
+                <a href="#" target="_blank">Privacy Policy</a>.
+            </label>
+        </div>
+
+        <div>
+            <label for="newsletters">
+                <input type="checkbox" id="newsletters" name="newsletters"> Subscribe to our newsletter.
+            </label>
+        </div>
+
+        <div>
+            <label for="notifications">
+                <input type="checkbox" id="notifications" name="notifications"> Receive notifications for new updates.
+            </label>
+        </div>
+
+        <a href="login.html"><button type="submit">Submit</button></a>
+        <button type="reset">Reset</button>
+    </form>
+
+</body>
+</html>
+
+
