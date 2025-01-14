@@ -1,3 +1,4 @@
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,35 +7,140 @@ body {
     color: #333;
 }
 
+/* Header Styles */
 header {
     text-align: center;
     padding: 1em;
-    background-color: #d3cc42; /* Yellow */
-    color: #333;
+    background-color: #d3cc42; /* Yellow Background */
+    color: #333; /* Dark Text */
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #d3cc42;
+    text-align: center;
 }
 
+.logo-container {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;  /* Adjust logo size */
+    height: auto;
+}
+
+/* Other styles for layout */
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+/* User Options - Role Selection */
+.user-options {
+    display: flex; /* Ensures horizontal layout */
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Aligns buttons vertically */
+    gap: 20px; /* Adds space between buttons */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+input[type="radio"] {
+    display: none; /* Hides the default radio buttons */
+}
+
+.role-button {
+    display: inline-block;
+    padding: 15px 30px; /* Button padding */
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    background-color: #d3cc42; /* Button background */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="radio"]:checked + .role-button {
+    background-color: #007bff; /* Highlight for selected role */
+    color: white;
+}
+
+.role-button:hover {
+    background-color: #0056b3; /* Hover effect */
+}
+
+/* Main Image */
 .main-image {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-}
-
-main {
-    max-width: 1000px;
-    margin: 2em auto;
-    padding: 1em;
-    background-color: #f8f9fa;
-    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+/* Main Form Styles */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds spacing between input fields and buttons */
+}
+
+label {
+    font-weight: bold;
+}
+
+input, button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input {
+    width: 100%;
+}
+
+button {
+    background-color: #d3cc42;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.register-text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
 label {
     margin-top: 15px;
     font-weight: bold;
@@ -58,22 +164,6 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-table th {
-    background-color: #f1f1f1;
+    background-color: #00b300;
 }
 
