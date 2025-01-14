@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Cargo - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Fruit Cargo Login</h1>
+    </header>
+    <nav class="user-options">
+        <form class="role-selection">
+            <input type="radio" id="farmer" name="role" value="farmer">
+            <label for="farmer" class="role-button">Farmer</label>
+
+            <input type="radio" id="transport" name="role" value="transport">
+            <label for="transport" class="role-button">Transport Agency</label>
+
+            <input type="radio" id="vendor" name="role" value="vendor">
+            <label for="vendor" class="role-button">Shop Vendor</label>
+
+            <input type="radio" id="customer" name="role" value="customer">
+            <label for="customer" class="role-button">Customer</label>
+        </form>
+    </nav>
+    <main>
+        <img src="./Fruit Cargo.jpg" alt="Banana Plantation" class="main-image">
+
+        <form action="dashboard.html" method="POST" class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <a href="home.html"><button type="submit">Login</button></a>
+            <button type="reset">Reset</button>
+        </form>
+
+        <p>Don't have an account? <a href="signup.html">Register here</a></p>
+
+
+
+
+        <section>
+            <h2>How to Use</h2>
+            <ol>
+                <li>Enter your login credentials.</li>
+                <li>Submit the form to access the dashboard.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li>Real-time tracking</li>
+                <li>Easy data management</li>
+                <li>Secure authentication</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
+
+
