@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Cargo - Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Welcome to Fruit Cargo</h1>
+    </header>
+
+    <main>
+        <h2>Your Selected Role: <span id="role"></span></h2>
+        <h3>Username: <span id="username"></span></h3>
+        <h3>Password: <span id="password"></span></h3>
+
+        <script>
+            // Get the URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const role = params.get('role');
+            const username = params.get('username');
+            const password = params.get('password');
+
+            // Display the role, username, and password in the respective elements
+            document.getElementById('role').textContent = role ? role : "Not selected";
+            document.getElementById('username').textContent = username ? username : "Not provided";
+            document.getElementById('password').textContent = password ? password : "Not provided";
+        </script>
+    </main>
+
+</body>
+</html>
