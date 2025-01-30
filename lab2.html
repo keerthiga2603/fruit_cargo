@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling</title>
+    <style>
+        body {
+            background-color: lightorange;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        .box {
+            padding: 15px;
+            border: 2px solid black;
+            margin: 15px 0;
+            background-color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        button, select, input {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Event Handling</h2>
+        
+        <button onclick="showMessage()">Discover Something New</button>
+        <p id="message"></p>
+        
+        <label>Select your favorite fruit:</label>
+        <select id="dropdown" onchange="showSelection()">
+            <option value="">Choose an option</option>
+            <option value="Apple">Apple</option>
+            <option value="Mango">Mango</option>
+        </select>
+        <p id="selection"></p>
+        
+        <label>Select Your CSE Section:</label>
+        <select id="cse-section" onchange="loadStudents()">
+            <option value="">Select</option>
+            <option value="CSE A">CSE A</option>
+            <option value="CSE B">CSE B</option>
+            <option value="CSE C">CSE C</option>
+        </select>
+        <select id="students"></select>
+        
+        <p id="result"></p>
+        <input type="number" id="numInput" placeholder="Enter a number to check Odd/Even">
+        <button onclick="checkEvenOdd()">Check Now</button>
+        
+        <button onclick="openNewWindow()">Explore the Web</button>
+        
+        <div class="box" onmouseover="changeBgColor(this)" onmouseout="resetBgColor(this)">Hover and see the magic!</div>
+        
+        <form onsubmit="submitForm(event)" onreset="resetForm()">
+            <input type="text" id="name" placeholder="Enter Your Name" required>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+        
+        <button ondblclick="doubleClickMessage()">Double Surprise</button>
+        <p id="dblclick-msg"></p>
+        <button onclick="revealHiddenMessage()">Reveal Hidden Message</button>
+        <p id="hiddenMessage">Surprise! You found the hidden message!</p>
+        <div id="parent" class="box">Parent Box (Bubbling & Capturing)
+            <div id="child" class="box">Child Box</div>
+        </div>
+        <input type="text" id="readonlyText" value="This is read-only" readonly>
+<button onclick="modifyText()">Modify Text</button>
+
+        
+        <button id="modifyBtn">Click to Transform</button>
+        <p id="modifyText">Watch this text change!</p>
+    </div>
+    
+    <script>
+        function showMessage() {
+            document.getElementById('message').innerText = "You just discovered something amazing!";
+        }
+        
+        function showSelection() {
+            let value = document.getElementById('dropdown').value;
+            document.getElementById('selection').innerText = "Great choice: " + value;
+        }
+        
+        function loadStudents() {
+            let section = document.getElementById('cse-section').value;
+            let students = document.getElementById('students');
+            students.innerHTML = "";
+            let studentList = {
+                "CSE A": ["Harsita", "Joshika", "Maha", "Naka"],
+                "CSE B": ["Gokul", "Swathi", "Harini", "Kamala"],
+                "CSE C": ["Keerthi", "Rasika", "Fayaz", "Meenaesh", "Lakshana", "Selvi"]
+            };
+            if (section in studentList) {
+                studentList[section].forEach(student => {
+                    let option = document.createElement('option');
+                    option.text = student;
+                    students.add(option);
+                });
+            }
+        }
+        
+        function checkEvenOdd() {
+            let num = document.getElementById('numInput').value;
+            let result = document.getElementById('result');
+            if (num % 2 === 0) {
+                result.innerText = "Wow! That's an Even Number.";
+            } else {
+                result.innerText = "Cool! That's an Odd Number.";
+            }
+        }
+        function modifyText() {
+        let textbox = document.getElementById('readonlyText');
+        textbox.removeAttribute('readonly');
+        textbox.value = "Now you can edit this!";
+    }
+        
+        function openNewWindow() {
+            window.open("https://www.google.com", "_blank");
+        }
+        
+        function changeBgColor(element) {
+            element.style.backgroundColor = "yellow";
+        }
+        
+        function resetBgColor(element) {
+            element.style.backgroundColor = "white";
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
+            alert("Your details have been successfully submitted!");
+        }
+        
+        function resetForm() {
+            alert("Form has been reset. You can start over!");
+        }
+        
+        function doubleClickMessage() {
+            document.getElementById('dblclick-msg').innerText = "Whoa! Double-click worked!";
+        }
+        function revealHiddenMessage() {
+            document.getElementById('hiddenMessage').style.display = "block";
+        }
+        
+        document.getElementById('parent').addEventListener('click', function() {
+            alert("You clicked the Parent Box (Bubbling Event)!");
+        }, false);
+        
+        document.getElementById('child').addEventListener('click', function(event) {
+            alert("You clicked the Child Box (Capturing Event)!");
+            event.stopPropagation();
+        }, true);
+        
+        document.getElementById('modifyBtn').addEventListener('click', function() {
+            document.getElementById('modifyText').innerText = "Ta-da! The text has changed!";
+        });
+    </script>
+</body>
+</html>
