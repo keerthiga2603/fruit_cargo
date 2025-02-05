@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="restoreSession()" onbeforeunload="return confirmExit()">
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <h1>Farmer Dashboard</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Farm Details</h2>
+            <label for="farmId">Farm ID:</label>
+            <input type="text" id="farmId" placeholder="Enter Farm ID" onkeyup="validateFarmId()" ondblclick="makeReadOnly(this)" oncontextmenu="disableRightClick(event)">
+            
+            <label for="farmerName">Farmer Name:</label>
+            <input type="text" id="farmerName" placeholder="Enter Farmer Name" onfocus="highlightField(this)" onblur="removeHighlight(this)">
+            
+            <button onclick="checkFarmId()">Check Farm ID</button>
+            <p id="farmStatus"></p>
+            
+            <button onclick="addFarm()">Add Farm</button>
+            <button onclick="removeFarm()">Remove Farm</button>
+            
+            <input type="hidden" id="hiddenFarmData" value="extra_farm_info">
+            
+            <h2>Product Registration</h2>
+            <label for="product">Product Name:</label>
+            <input type="text" id="product" placeholder="Enter Product Name" onkeypress="logKeyPress(event)">
+            
+            <label for="description">Product Description:</label>
+            <textarea id="description" placeholder="Enter Product Description" oninput="trackChanges()"></textarea>
+            
+            <label for="productType">Product Type:</label>
+            <select id="productType" onchange="productTypeChanged()">
+                <option value="apple">Apple</option>
+                <option value="banana">Banana</option>
+                <option value="grape">Grape</option>
+                <option value="mango">Mango</option>
+            </select>
+            
+            <button onclick="submitProduct()">Submit Product</button>
+            
+            <button onclick="donate()">Donate</button>
+            
+            <button ondblclick="qualityCheck()">Quality Check</button>
+            
+            <button onclick="checkNotifications()">Vendor Notifications</button>
+            
+            <button onclick="bookDriver()">Book a Driver</button>
+            
+            <div class="box" onmouseover="highlight(this)" onmouseout="resetHighlight(this)" onclick="boxClicked()">
+                Hover to Highlight
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        function restoreSession() {
+            document.getElementById('farmId').value = sessionStorage.getItem('farmId') || "";
+            document.getElementById('farmerName').value = sessionStorage.getItem('farmerName') || "";
+        }
+        
+        function confirmExit() {
+            return "Are you sure you want to leave? Changes may not be saved.";
+        }
+        
+        function makeReadOnly(element) {
+            element.readOnly = true;
+            alert("Farm ID is now read-only.");
+        }
+        
+        function disableRightClick(event) {
+            event.preventDefault();
+            alert("Right-click is disabled on this field.");
+        }
+        
+        function validateFarmId() {
+            let farmId = document.getElementById('farmId').value;
+            if (farmId.length < 3) {
+                document.getElementById('farmStatus').innerText = "Farm ID must be at least 3 characters long.";
+            } else {
+                document.getElementById('farmStatus').innerText = "";
+            }
+        }
+        
+        function highlightField(element) {
+            element.style.backgroundColor = "lightyellow";
+        }
+        
+        function removeHighlight(element) {
+            element.style.backgroundColor = "white";
+        }
+        
+        function checkFarmId() {
+            let farmId = document.getElementById('farmId').value;
+            sessionStorage.setItem('farmId', farmId);
+            if (farmId === "") {
+                document.getElementById('farmStatus').innerText = "No Farm ID Found. Redirecting to Farm Registration...";
+                setTimeout(() => {
+                    window.location.href = "farm_registration.html";
+                }, 2000);
+            } else {
+                document.getElementById('farmStatus').innerText = "Farm ID Found. You can proceed.";
+            }
+        }
+        
+        function addFarm() {
+            alert("Farm Added Successfully!");
+        }
+        
+        function removeFarm() {
+            alert("Farm Removed Successfully!");
+        }
+        
+        function submitProduct() {
+            let product = document.getElementById('product').value;
+            let description = document.getElementById('description').value;
+            let productType = document.getElementById('productType').value;
+            alert("Product Registered: " + product + " - " + description + " (" + productType + ")");
+        }
+        
+        function productTypeChanged() {
+            alert("Product type changed to: " + document.getElementById('productType').value);
+        }
+        
+        function donate() {
+            alert("Donation Successful!");
+        }
+        
+        function qualityCheck() {
+            alert("Quality Check Completed!");
+        }
+        
+        function checkNotifications() {
+            alert("No new notifications from vendors.");
+        }
+        
+        function bookDriver() {
+            alert("Driver Booking Requested!");
+        }
+        
+        function highlight(element) {
+            element.style.backgroundColor = "lightblue";
+        }
+        
+        function resetHighlight(element) {
+            element.style.backgroundColor = "white";
+        }
+        
+        function logKeyPress(event) {
+            console.log("Key pressed: " + event.key);
+        }
+        
+        function trackChanges() {
+            console.log("Description field modified.");
+        }
+        
+        function boxClicked() {
+            alert("Box Clicked!");
+        }
+    </script>
+</body>
+</html>
