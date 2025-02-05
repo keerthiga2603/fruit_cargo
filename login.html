@@ -9,20 +9,23 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+            <img src="Fruit_Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
         </div>
         <h1>Fruit Cargo Login</h1>
     </header>
 
     <main>
-        <img src="./Fruit Cargo.jpg" alt="Banana Plantation" class="main-image">
+        <img src="Fruit_Cargo.jpg" alt="Banana Plantation" class="main-image">
 
-        <form class="login-form" action="role.html" method="GET">
+        <form class="login-form" action="role.html" method="GET" onsubmit="saveSessionData()">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <!-- Hidden field for storing sensitive data -->
+            <input type="hidden" id="hiddenData" name="hiddenData" value="someSensitiveData">
 
             <div class="role-selection">
                 <input type="radio" id="farmer" name="role" value="farmer">
@@ -61,5 +64,33 @@
             </ul>
         </section>
     </main>
+
+    <script>
+        // Save session data when the user logs in
+        function saveSessionData() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.querySelector('input[name="role"]:checked')?.value;
+
+            // Store session data
+            sessionStorage.setItem('username', username);
+            sessionStorage.setItem('password', password);
+            sessionStorage.setItem('role', role);
+
+            // Optionally store hidden data
+            const hiddenData = document.getElementById('hiddenData').value;
+            sessionStorage.setItem('hiddenData', hiddenData);
+        }
+
+        // Refresh the page after 60 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 60000); // Refresh after 1 minute
+
+        // Set password field to read-only after the form is submitted
+        document.querySelector('form').addEventListener('submit', function () {
+            document.getElementById('password').readOnly = true;
+        });
+    </script>
 </body>
 </html>
