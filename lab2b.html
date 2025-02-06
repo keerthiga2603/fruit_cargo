@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>JavaScript Object Handling</h2>
+        <button onclick="showDetails()">Show Details</button>
+        <button onclick="updateUser()">Update Name</button>
+        <button onclick="deleteAge()">Delete Age</button>
+        <button onclick="showGreeting()">Show Greeting</button>
+        <button onclick="multiplyNumbers()">Multiply Numbers</button>
+        <button onclick="addi()">Addition</button>
+        <button onclick="bindExample()">Bind Example</button>
+        <button onclick="toStringExample()">ToString Example</button>
+        <button onclick="iterateArray()">Iterator Example</button>
+        
+        <p id="output">Click buttons to interact.</p>
+    </div>
+
+    <script>
+        // JavaScript Object with Getters & Setters
+        const person = {
+            firstName: "Ram",
+            lastName: "Seetha",
+            age: 30,
+            get fullName() {
+                return `${this.firstName} ${this.lastName}`;
+            },
+            set updateName(name) {
+                this.firstName = name;
+            }
+        };
+
+        // Function using call()
+        function greet(message) {
+            return `${message}, ${this.fullName}!`;
+        }
+
+        // Show details using Call
+        function showDetails() {
+            document.getElementById("output").innerText = `Name: ${person.fullName}, Age: ${person.age}`;
+        }
+
+        // Update Name with User Input (using Prompt)
+        function updateUser() {
+            let newName = prompt("Enter new first name:");
+            if (newName) {
+                person.updateName = newName;
+                document.getElementById("output").innerText = `Updated Name: ${person.fullName}`;
+            } else {
+                document.getElementById("output").innerText = "Update Cancelled.";
+            }
+        }
+
+        // Delete Age Property
+        function deleteAge() {
+            delete person.age;
+            document.getElementById("output").innerText = "Age deleted. Available properties: " + JSON.stringify(person);
+        }
+
+        // Show greeting using apply()
+        function showGreeting() {
+            let message = greet.apply(person, ["Hello"]);
+            document.getElementById("output").innerText = message;
+        }
+
+        // Addition Function
+        const addi = () => document.getElementById("output").innerText = `Addition Result: ${parseInt(prompt("Enter first number:")) + parseInt(prompt("Enter second number:"))}`;
+
+        // Multiplication Function (Multiline Arrow)
+        const multiplyNumbers = () => {
+            let a = parseInt(prompt("Enter first number:"));
+            let b = parseInt(prompt("Enter second number:"));
+            if (!isNaN(a) && !isNaN(b)) {
+                let result = a * b;
+                document.getElementById("output").innerText = `Multiplication Result: ${result}`;
+            } else {
+                document.getElementById("output").innerText = "Invalid input.";
+            }
+        };
+
+        // Bind Example
+        function bindExample() {
+            const greetWithBind = greet.bind(person, "Hi");
+            document.getElementById("output").innerText = greetWithBind();
+        }
+
+        // ToString Example
+        function toStringExample() {
+            const greetString = greet.toString();
+            document.getElementById("output").innerText = `Function toString: ${greetString}`;
+        }
+
+        // Iterator Example (Iterating over an array provided by user)
+        function iterateArray() {
+            let userInput = prompt("Enter a list of numbers separated by commas (e.g., 1,2,3,4):");
+            let numbers = userInput.split(',').map(num => parseInt(num.trim()));
+
+            if (numbers.every(num => !isNaN(num))) {
+                let result = "Iterating through array: ";
+                // Using forEach to iterate through numbers array
+                numbers.forEach((num) => result += `${num} `);
+                document.getElementById("output").innerText = result;
+            } else {
+                document.getElementById("output").innerText = "Invalid input. Please enter valid numbers.";
+            }
+        }
+
+    </script>
+</body>
+</html>
+
