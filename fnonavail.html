@@ -15,7 +15,35 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 80px; 
         }
+        /* Header Styles */
+header {
+    display: flex;
+    align-items: center;  /* Align items to the left */
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #d3cc42; /* Yellow Background */
+    text-align: center;
+    position: fixed; /* Fixes header at the top */
+    top: 0; /* Stick to the top */
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+/* Logo Styling */
+.logo-container {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;  /* Adjust logo size */
+    height: auto;
+}
+
 
         .dialog-box {
             background: rgba(255, 255, 255, 0.9);
@@ -36,6 +64,7 @@
         }
 
         .dropdown-container {
+            
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 12px;
@@ -105,6 +134,12 @@
 </head>
 
 <body>
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Welcome to Fruit Cargo</h1>
+    </header>  
     <div class="dialog-box">
         <h2>Register Your Farm</h2>
         <input type="text" placeholder="Farm ID" required autocomplete="on">
@@ -124,7 +159,7 @@
 
         </div>
         <input type="text" placeholder="Farm Address" required>
-        <button onmouseover="this.style.backgroundColor='lightblue'"
+        <button ondblclick="window.location.href='farm.html'" onmouseover="this.style.backgroundColor='lightblue'"
             onmouseout="this.style.backgroundColor=''">Submit</button>
 
     </div>
