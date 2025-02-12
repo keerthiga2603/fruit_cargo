@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farm ID Entry</title>
     <style>
+
         body {
             background-image: url('https://static.vecteezy.com/system/resources/previews/007/563/124/non_2x/farm-background-with-barn-and-windmill-free-vector.jpg');
             background-size: cover;
@@ -17,6 +18,31 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;  /* Align items to the left */
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #d3cc42; /* Yellow Background */
+    text-align: center;
+    position: fixed; /* Fixes header at the top */
+    top: 0; /* Stick to the top */
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+/* Logo Styling */
+.logo-container {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;  /* Adjust logo size */
+    height: auto;
+}
 
         .dialog-box {
             background: rgba(255, 255, 255, 0.9);
@@ -67,7 +93,15 @@
     </style>
 </head>
 
+
 <body onload="alert('Welcome! Please enter your Farm ID.')">
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Welcome to Fruit Cargo</h1>
+    </header>
+    
     <div class="dialog-box">
         <label for="farmType" class="dropdown-label">Farm Type:</label>
         <input type="text" id="farmType" class="readonly-input" value="Farm" readonly>
