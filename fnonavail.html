@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Farm</title>
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/563/124/non_2x/farm-background-with-barn-and-windmill-free-vector.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .dialog-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .dropdown-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .dropdown-label {
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .dropdown-select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .dropdown-select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .styled-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #007BFF;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .styled-button:hover {
+            background: #0056b3;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #007BFF;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dialog-box">
+        <h2>Register Your Farm</h2>
+        <input type="text" placeholder="Farm ID" required autocomplete="on">
+        <div class="dropdown-container">
+            <label for="state" class="dropdown-label">Select State:</label>
+            <select id="state" class="dropdown-select" onchange="updateDistricts()">
+                <option value="">--Select State--</option>
+                <option value="tamilnadu">Tamil Nadu</option>
+                <option value="karnataka">Karnataka</option>
+            </select>
+
+            <label for="district" class="dropdown-label">Select District:</label>
+            <select id="district" class="dropdown-select">
+                <option value="">--Select District--</option>
+            </select>
+
+
+        </div>
+        <input type="text" placeholder="Farm Address" required>
+        <button onmouseover="this.style.backgroundColor='lightblue'"
+            onmouseout="this.style.backgroundColor=''">Submit</button>
+
+    </div>
+</body>
+<script>
+    function updateDistricts() {
+        let state = document.getElementById("state").value;
+        let districtDropdown = document.getElementById("district");
+        districtDropdown.innerHTML = '<option value="">--Select District--</option>'; // Reset dropdown
+
+        let districts = {
+            "tamilnadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Erode", "Tirunelveli", "Vellore", "Thoothukudi", "Kanyakumari"],
+            "karnataka": ["Bangalore Urban", "Bangalore Rural", "Mysore", "Mangalore", "Belgaum"]
+        };
+
+        if (districts[state]) {
+            districts[state].forEach(district => {
+                let option = document.createElement("option");
+                option.value = district.toLowerCase();
+                option.textContent = district;
+                districtDropdown.appendChild(option);
+            });
+        }
+    }
+</script>
+
+</html>
