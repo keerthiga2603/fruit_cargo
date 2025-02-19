@@ -1,0 +1,281 @@
+<!-- avail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Availability</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/563/124/non_2x/farm-background-with-barn-and-windmill-free-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 100px; /* Prevents header overlap */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            background-color: #d3cc42;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-container {
+            margin-right: 15px;
+        }
+
+        .logo {
+            width: 50px; /* Adjust logo size */
+            height: auto;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        /* Main Content */
+        main {
+            width: 80%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+
+        .add-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #45a049;
+        }
+
+        .refresh-btn {
+            background: #0275d8;
+            color: white;
+        }
+
+        .refresh-btn:hover {
+            background: #025aa5;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #f4a259;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* Action Buttons */
+        .modify-btn {
+            background: #ff9800;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .modify-btn:hover {
+            background: #e68900;
+        }
+
+        .delete-btn {
+            background: #d9534f;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo -->
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Farm Availability</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Farm ID: <span id="farmId"></span></h2>
+
+        <button class="add-btn" onclick="window.location.href='add.html'">Add Product</button>
+        <button class="refresh-btn" onclick="location.reload()">Refresh</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Fruit Name</th>
+                    <th>Cost per kg</th>
+                    <th>Weight (kgs)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+    </main>
+    
+    <script>
+        class Product {
+            constructor(name, cost, weight) {
+                this.name = name;
+                this.cost = cost;
+                this.weight = weight;
+            }
+            get details() {
+                return `${this.name} - $${this.cost}/kg - ${this.weight}kg`;
+            }
+            set updateCost(newCost) {
+                this.cost = newCost;
+            }
+            set updateWeight(newWeight) {
+                this.weight = newWeight;
+            }
+            toString() {
+                return `Product: ${this.name}, Cost: ${this.cost}, Weight: ${this.weight}`;
+            }
+        }
+
+        class OrganicProduct extends Product {
+            constructor(name, cost, weight, certification) {
+                super(name, cost, weight);
+                this.certification = certification;
+            }
+            get details() {
+                return `${super.details()} - Certified: ${this.certification}`;
+            }
+        }
+
+        function loadFarmData() {
+            let farmId = sessionStorage.getItem("farmId") || "Not Found";
+            document.getElementById("farmId").innerText = farmId;
+
+            let products = JSON.parse(sessionStorage.getItem("products")) || [];
+            displayProducts(products);
+        }
+
+        const displayProducts = (products) => {
+            let tableBody = document.getElementById("productList");
+            tableBody.innerHTML = "";
+            
+            products.forEach((product, index) => {
+                let row = tableBody.insertRow();
+                row.insertCell(0).innerText = product.name;
+                row.insertCell(1).innerText = `$${product.cost}`;
+                row.insertCell(2).innerText = `${product.weight}kg`;
+                
+                let actionCell = row.insertCell(3);
+                let modifyBtn = document.createElement("button");
+                modifyBtn.innerText = "Modify";
+                modifyBtn.className = "modify-btn";
+                modifyBtn.onclick = modifyProduct.bind(null, index);
+                
+                let deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "Delete";
+                deleteBtn.className = "delete-btn";
+                deleteBtn.onclick = function () {
+                    deleteProduct.call(this, index);
+                    row.remove();
+                };
+                
+                actionCell.appendChild(modifyBtn);
+                actionCell.appendChild(deleteBtn);
+            });
+        };
+
+        function modifyProduct(index) {
+            let products = JSON.parse(sessionStorage.getItem("products"));
+            let option = prompt("Modify (1) Cost or (2) Weight?");
+
+            if (option === "1") {
+                let newCost = prompt("Enter new cost per kg:", products[index].cost);
+                if (newCost !== null && newCost !== "") {
+                    products[index].cost = newCost;
+                }
+            } else if (option === "2") {
+                let newWeight = prompt("Enter new weight (kg):", products[index].weight);
+                if (newWeight !== null && newWeight !== "") {
+                    products[index].weight = newWeight;
+                }
+            }
+            sessionStorage.setItem("products", JSON.stringify(products));
+            displayProducts(products);
+        }
+
+        function deleteProduct(index) {
+            let products = JSON.parse(sessionStorage.getItem("products"));
+            products.splice(index, 1);
+            sessionStorage.setItem("products", JSON.stringify(products));
+        }
+
+        window.onload = () => {
+            document.getElementById("farmId").hidden = false;
+            loadFarmData();
+        };
+    </script>
+</body>
+</html>
+
