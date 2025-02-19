@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate to Farmers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: lightgoldenrodyellow;
+            background-size: cover;
+            color: #333;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+
+        .container, .donor-list {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .donate-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .donor-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .donor-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hover-effect {
+            background-color: darkgreen !important;
+        }
+
+        .border-effect {
+            border: 2px solid blue !important;
+        }
+    
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;  /* Align items to the left */
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #d3cc42; /* Yellow Background */
+    text-align: center;
+    position: fixed; /* Fixes header at the top */
+    top: 0; /* Stick to the top */
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+/* Logo Styling */
+.logo-container {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;  /* Adjust logo size */
+    height: auto;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Fruit Cargo</h1>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Help Our Farmers</h1>
+
+    <div class="container">
+        <h2>Make a Donation</h2>
+        <form id="donationForm">
+            <label>Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label>Amount ($):</label>
+            <input type="number" id="amount" required>
+
+            <label>Donation Type:</label>
+            <select id="donationType">
+                <option value="One-Time">One-Time</option>
+                <option value="Monthly">Monthly</option>
+            </select>
+
+            <label>Message (Optional):</label>
+            <textarea id="message"></textarea>
+
+            <button type="submit" class="donate-btn">Donate</button>
+            <button type="reset" class="reset-btn">Reset</button>
+        </form>
+    </div>
+
+    <div class="donor-list">
+        <h2>Recent Donors</h2>
+        <ul id="donors"></ul>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#donationForm").submit(function (event) {
+                event.preventDefault();
+                let name = $("#name").val();
+                let amount = $("#amount").val();
+                let donationType = $("#donationType").val();
+                let message = $("#message").val();
+
+                if (name && amount) {
+                    let donorEntry = `<li><strong>${name}</strong> donated $${amount} (${donationType}) <p>${message}</p></li>`;
+                    $("#donors").append(donorEntry).hide().fadeIn();
+                    $("#donationForm")[0].reset();
+                } else {
+                    alert("Please fill all required fields!");
+                }
+            });
+
+            $(".reset-btn").click(function () {
+                $("#donationForm").slideUp(500).slideDown(500);
+            });
+
+            $(".donate-btn").hover(function () {
+                $(this).addClass("hover-effect");
+            }, function () {
+                $(this).removeClass("hover-effect");
+            });
+        });
+    </script>
+</body>
+
+</html>
+
