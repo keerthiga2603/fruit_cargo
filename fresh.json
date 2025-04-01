@@ -1,0 +1,54 @@
+{
+    "fruits": [
+        {
+            "name": "Apple",
+            "origin": "Himachal Pradesh, India",
+            "processing": [
+                "Harvesting",
+                "Sorting & Washing",
+                "Cold Storage",
+                "Packaging"
+            ]
+        },
+        {
+            "name": "Banana",
+            "origin": "Tamil Nadu, India",
+            "processing": [
+                "Harvesting",
+                "Ripening",
+                "Quality Check",
+                "Export"
+            ]
+        },
+        {
+            "name": "Mango",
+            "origin": "Maharashtra, India",
+            "processing": [
+                "Plucking",
+                "Sorting",
+                "Ripening in chambers",
+                "Packaging"
+            ]
+        },
+        {
+            "name": "Grapes",
+            "origin": "Nashik, India",
+            "processing": [
+                "Harvesting",
+                "Washing",
+                "Quality Check",
+                "Packing for markets"
+            ]
+        },
+        {
+            "name": "Orange",
+            "origin": "Nagpur, India",
+            "processing": [
+                "Plucking",
+                "Washing",
+                "Sorting",
+                "Cold Storage"
+            ]
+        }
+    ]
+}

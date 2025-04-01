@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Farm Fruits</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/563/124/non_2x/farm-background-with-barn-and-windmill-free-vector.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            background-color: #d3cc42;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            margin-right: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 60%;
+        }
+        .container {
+    max-width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+        .radio-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .response-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #000;
+            background-color: #f9f9f9;
+            min-height: 50px;
+            font-size: 16px;
+        }
+
+        .submit-button {
+            padding: 12px;
+            width: 100%;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="./Fruit_Cargo.jpg" alt="Fruit Cargo Logo" class="logo">
+        </div>
+        <h1>Fresh Farm Fruits</h1>
+    </header>
+
+    <div class="container">
+        <h2>Select a Fruit</h2>
+
+        <div id="radioContainer" class="radio-group">
+            <label><input type="radio" name="fruit" value="apple"> Apple </label><br>
+            <label><input type="radio" name="fruit" value="banana"> Banana </label><br>
+            <label><input type="radio" name="fruit" value="mango"> Mango </label><br>
+            <label><input type="radio" name="fruit" value="grapes"> Grapes </label><br>
+            <label><input type="radio" name="fruit" value="orange"> Orange </label><br>
+        </div>
+
+        <button id="submitBtn" class="submit-button">Get Details</button>
+
+        <div id="resultBox" class="response-box">Fruit details will appear here...</div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

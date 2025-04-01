@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX JSON Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; text-align: center; }
+        .radio-group { margin-bottom: 10px; text-align: left; }
+        .response-box { margin-top: 20px; padding: 10px; border: 1px solid #000; background-color: #f9f9f9; min-height: 30px; }
+        .submit-button { padding: 10px; background-color: blue; color: white; border: none; cursor: pointer; }
+        .submit-button:hover { background-color: darkblue; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select an Option</h2>
+        
+        <div id="radioContainer" class="radio-group">
+            <label><input type="radio" name="option" value="TN"> TN </label><br>
+            <label><input type="radio" name="option" value="KL"> KL </label><br>
+            <label><input type="radio" name="option" value="KN"> KN </label><br>
+            <label><input type="radio" name="option" value="AP"> AP </label><br>
+            <label><input type="radio" name="option" value="TL"> TL </label><br>
+            <label><input type="radio" name="option" value="UP"> UP </label><br>
+        </div>
+
+        <button id="submitBtn" class="submit-button">Submit</button>
+
+        <div id="resultBox" class="response-box">Response will appear here...</div>
+    </div>
+
+    <script src="ajax_script.js"></script>
+
+</body>
+</html>

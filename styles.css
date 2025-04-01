@@ -1,169 +1,133 @@
-/* General Body Styles */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
-    background-color: #e5e86761;
-    color: #333;
 }
 
-/* Header Styles */
+/* Header */
 header {
+    background: #f0c040;
+    padding: 10px;
     text-align: center;
-    padding: 1em;
-    background-color: #d3cc42; /* Yellow Background */
-    color: #333; /* Dark Text */
-}
-header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    background-color: #d3cc42;
-    text-align: center;
+    justify-content: center;
 }
 
 .logo-container {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .logo {
-    width: 50px;  /* Adjust logo size */
+    width: 50px; /* Adjust as needed */
     height: auto;
 }
 
-/* Other styles for layout */
 h1 {
-    font-size: 2rem;
-    margin: 0;
+    font-size: 24px;
+    color: #333;
 }
-/* User Options - Role Selection */
-.user-options {
-    display: flex; /* Ensures horizontal layout */
-    justify-content: center; /* Centers the buttons horizontally */
-    align-items: center; /* Aligns buttons vertically */
-    gap: 20px; /* Adds space between buttons */
+
+/* Form Container */
+.container {
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #ddd;
-}
-
-input[type="radio"] {
-    display: none; /* Hides the default radio buttons */
-}
-
-.role-button {
-    display: inline-block;
-    padding: 15px 30px; /* Button padding */
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    background-color: #d3cc42; /* Button background */
-    color: white; /* Button text color */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="radio"]:checked + .role-button {
-    background-color: #007bff; /* Highlight for selected role */
-    color: white;
-}
-
-.role-button:hover {
-    background-color: #0056b3; /* Hover effect */
-}
-
-/* Main Image */
-.main-image {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Main Form Styles */
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Adds spacing between input fields and buttons */
-}
-
-label {
-    font-weight: bold;
-}
-
-input, button {
-    padding: 10px 15px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-input {
-    width: 100%;
-}
-
-button {
-    background-color: #d3cc42;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.register-text {
+    width: 40%;
+    margin: auto;
     text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
 }
 
-.register-text a {
-    color: #007bff;
-    text-decoration: none;
+h2 {
+    color: #333;
 }
 
-.register-text a:hover {
-    text-decoration: underline;
+/* Form Elements */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 label {
-    margin-top: 15px;
+    margin: 5px 0;
     font-weight: bold;
 }
 
-input, textarea, select, button {
-    margin-top: 5px;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%;
+input, select {
+    width: 80%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
-    margin-top: 15px;
-    background-color: #d3cc42;
-    color: white;
+    width: 85%;
+    padding: 10px;
+    margin-top: 10px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
 }
 
-button:hover {
-    background-color: #00b300;
+.add-btn {
+    background: green;
+    color: white;
+    border-radius: 5px;
 }
 
+.cancel-btn {
+    background: red;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Table */
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #f0c040;
+    color: #333;
+}
+
+/* Buttons inside table */
+.modify-btn {
+    background: blue;
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    background: darkred;
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}

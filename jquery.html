@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Interaction Webpage</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>jQuery Interaction Webpage</h2>
+   
+    <p class="intro">This is an introduction paragraph.</p>
+    <p class="first">This is the first paragraph.</p>
+   
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+   
+    <a href="https://example.com">Click Here</a>
+   
+    <button type="button">Click Me</button>
+   
+    <table border="1">
+        <tr><td>Row 1</td></tr>
+        <tr><td>Row 2</td></tr>
+        <tr><td>Row 3</td></tr>
+    </table>
+   
+    <input type="radio" name="option"> Option 1
+    <input type="radio" name="option"> Option 2
+   
+    <input type="text" placeholder="Enter text">
+    <input type="file">
+   
+    <script>
+        $(function(){ // Shortcut for $(document).ready()
+
+            // Click event
+            $('button').click(function(){
+                alert('Button was clicked!');
+                $(this).css('background', 'red');
+            });
+
+            // Keypress event
+            $('input:text').keypress(function(){
+                console.log('Key pressed: ' + $(this).val());
+            });
+
+            // Blur event (when input loses focus)
+            $('input:text').blur(function(){
+                $(this).css('border', '2px solid orange');
+                console.log('Input field lost focus!');
+            });
+
+            // Focus event (when input gains focus)
+            $('input:text').focus(function(){
+                $(this).css('background', 'lightblue');
+                console.log('Input field focused!');
+            });
+
+            // Change event (for radio buttons)
+            $('input:radio').change(function(){
+                alert('You selected a radio button!');
+            });
+
+            // Change event (for file input)
+            $('input:file').change(function(){
+                alert('File uploaded!');
+            });
+
+            // Additional selectors with different events
+            $('p.intro').mouseenter(function(){
+                $(this).css('color', 'blue');
+            });
+
+            $('p.first').mouseleave(function(){
+                $(this).css('font-weight', 'bold');
+            });
+
+            $('ul li:first').dblclick(function(){
+                $(this).css('background', 'yellow');
+            });
+
+            $('tr:odd').hover(function(){
+                $(this).css('background', 'lightgray');
+            });
+
+            $('li:eq(2)').mousedown(function(){
+                $(this).css('font-style', 'italic');
+            });
+
+            $('li:eq(2)').mouseup(function(){
+                $(this).css('font-style', 'normal');
+            });
+
+        });
+    </script>
+</body>
+</html>
