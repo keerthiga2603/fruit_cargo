@@ -5,7 +5,7 @@ public class DB9 {
     // ✅ Corrected MySQL connection details
     private static final String URL = "jdbc:mysql://localhost:3306/farmer"; 
     private static final String USER = "root";  
-    private static final String PASSWORD = "pswd";  
+    private static final String PASSWORD = "Mysql26";  
 
     public static void main(String[] args) {
         try {
@@ -63,9 +63,9 @@ public class DB9 {
     private static void createTables(Connection conn) throws SQLException {
         String createFarmerTable = """
             CREATE TABLE IF NOT EXISTS Farmer (
-                FarmerID INT AUTO_INCREMENT PRIMARY KEY,
-                FarmerName VARCHAR(255) NOT NULL,
-                Location VARCHAR(255) DEFAULT 'Unknown'
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                location VARCHAR(255) DEFAULT 'Unknown'
             );
             """;
 
@@ -92,7 +92,7 @@ public class DB9 {
         System.out.print("Enter Farmer Location: ");
         String location = scanner.nextLine();
 
-        String sql = "INSERT INTO Farmer (FarmerName, Location) VALUES (?, ?)";
+        String sql = "INSERT INTO Farmer (name, location) VALUES (?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.setString(2, location);
@@ -110,7 +110,7 @@ public class DB9 {
         System.out.print("Enter Product Quantity: ");
         int quantity = scanner.nextInt();
 
-        String sql = "INSERT INTO Product (FarmerID, Rate, Quantity) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Product (farmerId, Rate, Quantity) VALUES (?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, farmerId);
             pstmt.setFloat(2, rate);
@@ -126,7 +126,7 @@ public class DB9 {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             System.out.println("\n===== Farmers List =====");
             while (rs.next()) {
-                System.out.println("🆔 FarmerID: " + rs.getInt("FarmerID") + " | Name: " + rs.getString("FarmerName") + " | Location: " + rs.getString("Location"));
+                System.out.println("🆔 FarmerID: " + rs.getInt("id") + " | Name: " + rs.getString("name") + " | Location: " + rs.getString("Location"));
             }
         }
     }
@@ -152,7 +152,7 @@ public class DB9 {
         System.out.print("Enter New Farmer Location: ");
         String newLocation = scanner.nextLine();
 
-        String sql = "UPDATE Farmer SET FarmerName = ?, Location = ? WHERE FarmerID = ?";
+        String sql = "UPDATE Farmer SET name = ?, Location = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, newName);
             pstmt.setString(2, newLocation);
@@ -196,7 +196,7 @@ public class DB9 {
         System.out.print("Enter FarmerID to delete: ");
         int id = scanner.nextInt();
 
-        String sql = "DELETE FROM Farmer WHERE FarmerID = ?";
+        String sql = "DELETE FROM Farmer WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             int rows = pstmt.executeUpdate();
