@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Data>
+    <Farmer>
+        <FarmerID>1</FarmerID>
+        <Name>Ravi</Name>
+        <Location>Chennai</Location>
+    </Farmer>
+    <Product>
+        <ProductID>101</ProductID>
+        <FarmerID>1</FarmerID>
+        <Rate>45.5</Rate>
+        <Quantity>30</Quantity>
+    </Product>
+</Data>
