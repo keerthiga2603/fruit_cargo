@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cart Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-image: url('https://media.istockphoto.com/id/981318622/photo/abstract-blurred-photo-of-trolley-in-department-store-bokeh-background-empty-shopping-cart-in.jpg?s=612x612&w=0&k=20&c=2sGrAZK8XmkHoNG4Q8h9upMejrIa9WrQuDRNnS1961A=');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-align: center;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        .form-group button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.2em;
+            width: 100%;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        td {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Cart Page</h1>
+    <h2>Add/Update Product</h2>
+    <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" placeholder="Enter Product Name">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" placeholder="Enter Price" step="0.01">
+    </div>
+    <input type="hidden" id="productId"> <!-- Hidden ID input for editing existing products -->
+    <div class="form-group">
+        <button id="addProductButton">Add Product</button>
+        <p id="errorMessage" class="error"></p>
+    </div>
+
+    <h2>Products List</h2>
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Products will be displayed here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('addProductButton').addEventListener('click', addProduct);
+
+        function addProduct() {
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const price = document.getElementById('price').value;
+            const productId = document.getElementById('productId').value; // Get product ID for update
+
+            if (!name || !description || !price) {
+                document.getElementById('errorMessage').innerText = 'All fields are required!';
+                return;
+            }
+
+            document.getElementById('errorMessage').innerText = '';
+
+            // If productId exists, it's an update request, else it's a new product
+            const url = productId ? `http://localhost:3000/nodepro/${productId}` : 'http://localhost:3000/nodepro';
+            const method = productId ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, description, price })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`${name} has been ${productId ? 'updated' : 'added'}.`);
+                fetchProducts();
+                resetForm();
+            })
+            .catch(error => console.error('Error adding or updating product:', error));
+        }
+
+        function fetchProducts() {
+            fetch('http://localhost:3000/nodepro')
+                .then(response => response.json())
+                .then(products => {
+                    const tableBody = document.getElementById('productsTable').getElementsByTagName('tbody')[0];
+                    tableBody.innerHTML = '';
+                    products.forEach(product => {
+                        const row = tableBody.insertRow();
+                        row.insertCell(0).innerText = product.id;
+                        row.insertCell(1).innerText = product.name;
+                        row.insertCell(2).innerText = product.description;
+                        row.insertCell(3).innerText = parseFloat(product.price).toFixed(2);
+                        
+                        // Add Edit and Delete buttons
+                        const actionsCell = row.insertCell(4);
+                        const editButton = document.createElement('button');
+                        editButton.innerText = 'Edit';
+                        editButton.onclick = () => editProduct(product);
+                        actionsCell.appendChild(editButton);
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.innerText = 'Delete';
+                        deleteButton.onclick = () => deleteProduct(product.id);
+                        actionsCell.appendChild(deleteButton);
+                    });
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
+
+        function editProduct(product) {
+            // Set form values with product data
+            document.getElementById('name').value = product.name;
+            document.getElementById('description').value = product.description;
+            document.getElementById('price').value = product.price;
+            document.getElementById('productId').value = product.id;  // Set product ID for update
+
+            // Change Add Product button to Update Product button
+            const addButton = document.getElementById('addProductButton');
+            addButton.innerText = 'Update Product';
+        }
+
+        function resetForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('productId').value = ''; // Reset product ID
+            const addButton = document.getElementById('addProductButton');
+            addButton.innerText = 'Add Product';
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                fetch(`http://localhost:3000/nodepro/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(`Product with ID: ${id} has been deleted.`);
+                    fetchProducts();
+                })
+                .catch(error => console.error('Error deleting product:', error));
+            }
+        }
+
+        fetchProducts();
+    </script>
+</body>
+</html>
