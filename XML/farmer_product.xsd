@@ -1,0 +1,27 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Farmer" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FarmerID" type="xs:int"/>
+              <xs:element name="Name" type="xs:string"/>
+              <xs:element name="Location" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Product" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductID" type="xs:int"/>
+              <xs:element name="FarmerID" type="xs:int"/>
+              <xs:element name="Rate" type="xs:float"/>
+              <xs:element name="Quantity" type="xs:int"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
